@@ -6,7 +6,7 @@ console.log(outputPath +'dist/')
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    path: path.join(outputPath, 'dist/'),
+    path: path.join(outputPath, 'public/'),
     filename:'[name].[hash].js',
     chunkFilename: '[name].[hash].js'
   },
