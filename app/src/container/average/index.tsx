@@ -5,7 +5,7 @@ import { TableHeader, TableBody, Col, ContentTable, Section, ButtonStyle } from 
 interface State {
   data: object;
   media: number;
-  sumSquare: number;
+  count: number;
 }
 
 export class Average extends React.Component<{},State> {
@@ -14,27 +14,28 @@ export class Average extends React.Component<{},State> {
     this.state = {
       data: {},
       media: 0,
-      sumSquare: 0
+      count: 0
     }
   }
 
   componentDidMount() {
-    let num = 0, count, square = 0;
+    let num = 0, count;
 
     formService.get()
-    .then((response) => {
-      this.setState({data: response});
-      Object.keys(response).map((item, index) => {
-        num += Number(response[item]['age']);
-        count = index + 1;
-        return {num, count};
-      });
-      this.setState({media: num /count, sumSquare: square});
-    })
-    .catch((error) => console.error(error))
+      .then((response) => {
+        Object.keys(response).map((item, index) => {
+          num += Number(response[item]['age']);
+          count = index + 1;
+          return {num, count};
+        });
+        this.setState({data: response, media: num/count, count});
+      })
+      .catch((error) => console.error(error))
   }
 
   render() {
+    let sumSquare = 0;
+    const roundMedia = Math.round(this.state.media * 100) / 100;
     const { data } = this.state;
     return(
       <Section>
@@ -47,12 +48,22 @@ export class Average extends React.Component<{},State> {
           </TableHeader>
           {
             Object.keys(data).map((item, index) => {
+              sumSquare += Math.pow(data[item]['age'] -  this.state.media, 2);
+
               return(
                 <TableBody key={index}>
-                  <Col style={{width: '20%'}}>{index}</Col>
-                  <Col style={{width: '20%'}}>{data[item]['age']}</Col>
-                  <Col style={{width: '20%'}}>{data[item]['age']} - {this.state.media} = {data[item]['age'] -  this.state.media}</Col>
-                  <Col style={{width: '20%'}}>({data[item]['age'] -  this.state.media})^2 = {Math.pow(data[item]['age'] -  this.state.media, 2)} </Col>
+                  <Col style={{width: '20%'}}>
+                    {index}
+                  </Col>
+                  <Col style={{width: '20%'}}>
+                    {data[item]['age']}
+                  </Col>
+                  <Col style={{width: '20%'}}>
+                    {data[item]['age']} - {roundMedia} 
+                    = {Math.round((data[item]['age'] -  roundMedia) * 100)/100}
+                  </Col>
+                  <Col style={{width: '20%'}}>{Math.round((data[item]['age'] -  roundMedia)*100)/100}^2 
+                  = {Math.round(Math.pow(data[item]['age'] - roundMedia, 2)*100)/100} </Col>
                 </TableBody>
               )
             })
@@ -66,7 +77,7 @@ export class Average extends React.Component<{},State> {
         <br/>
         <div>
           <div>S: Desviación Estándar</div>
-          <b>S =  </b>
+          <b>S = {Math.round(Math.sqrt(sumSquare/(this.state.count - 1))*100)/100}</b>
         </div>
         <div>
           <ButtonStyle href="list">
