@@ -6,8 +6,9 @@ import { Error } from '../../component/Error';
 import { FieldStyle, FormStyle, WrapperStyle, ButtonStyle } from './styled';
 import { formService} from '../../service';
 import { validations } from './validations';
+import { withRouter } from "react-router-dom";
 
-export const Form = () => {
+export const Form = ({...props}) => {
   return (
     <WrapperStyle>
       <Formik
@@ -20,7 +21,11 @@ export const Form = () => {
         }
         validationSchema={validations}
         onSubmit={(values) => {
-          formService.add(values);
+          formService.add(values)
+            .then(() => {
+              props.history.push("/average");
+            })
+            .catch((error) => console.error(error));
         }}
       >
         {props => {
@@ -33,7 +38,6 @@ export const Form = () => {
             errors,
             touched
           } = props;
-          console.log(errors);
           return(
             <FormStyle onSubmit={handleSubmit}>
               <FieldStyle>
@@ -91,4 +95,5 @@ export const Form = () => {
     </WrapperStyle>
   );
 };
-export default Form; 
+
+export default withRouter(Form);

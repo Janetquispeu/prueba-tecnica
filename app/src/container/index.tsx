@@ -6,12 +6,10 @@ export class WrapperForm extends React.Component<{},{}> {
     super(props);
   }
 
-  componentDidMount() {
-  }
-
   render() {
+    const {...props} = this.props;
     return(
-      <Form/>
+      <Form {...props}/>
     )
   }
 }

@@ -8,5 +8,13 @@ export const formService = {
     } catch (error) {
       throw new Error(error.message);
     }
+  },
+  async get() {
+    try {
+      const { data } = await axios.get('https://app-firebase-3bc55.firebaseio.com/usuario.json');
+      return data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }

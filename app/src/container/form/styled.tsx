@@ -14,7 +14,7 @@ export const WrapperStyle = styled.div`
   justify-content: center;
 `
 export const ButtonStyle = styled.button`
-  background: ${COLORS.BLUE};
+  background: ${(props) => props.disabled ? `${COLORS.SILVER}`: `${COLORS.BLUE}` };
   border-radius: 5px;
   color: #fafafa;
   float: right;
