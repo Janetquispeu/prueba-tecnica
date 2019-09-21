@@ -1,7 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Layout } from './styled';
+import { WrapperForm } from './container/index';
 
 ReactDOM.render(
-  <div>Hello World!!!</div>,
+  <Layout>
+    <WrapperForm/>
+  </Layout>,
   document.getElementById('root')
 );
