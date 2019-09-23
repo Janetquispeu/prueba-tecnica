@@ -41,10 +41,10 @@ export class Average extends React.Component<{},State> {
       <Section>
         <ContentTable>
           <TableHeader>
-            <Col style={{width: '20%'}}>Nº</Col>
-            <Col style={{width: '20%'}}>Edad</Col>
-            <Col style={{width: '20%'}}>x-X</Col>
-            <Col style={{width: '20%'}}>(x-X)^2</Col>
+            <Col>Nº</Col>
+            <Col>Edad</Col>
+            <Col>x-X</Col>
+            <Col>(x-X)^2</Col>
           </TableHeader>
           {
             Object.keys(data).map((item, index) => {
@@ -52,17 +52,13 @@ export class Average extends React.Component<{},State> {
 
               return(
                 <TableBody key={index}>
-                  <Col style={{width: '20%'}}>
-                    {index}
-                  </Col>
-                  <Col style={{width: '20%'}}>
-                    {data[item]['age']}
-                  </Col>
-                  <Col style={{width: '20%'}}>
-                    {data[item]['age']} - {roundMedia} 
+                  <Col>{index}</Col>
+                  <Col>{data[item]['age']}</Col>
+                  <Col>
+                    {data[item]['age']} - {roundMedia}
                     = {Math.round((data[item]['age'] -  roundMedia) * 100)/100}
                   </Col>
-                  <Col style={{width: '20%'}}>{Math.round((data[item]['age'] -  roundMedia)*100)/100}^2 
+                  <Col>{Math.round((data[item]['age'] -  roundMedia)*100)/100}^2
                   = {Math.round(Math.pow(data[item]['age'] - roundMedia, 2)*100)/100} </Col>
                 </TableBody>
               )

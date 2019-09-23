@@ -1,8 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const pathClient = path.join(__dirname, '../../app/');
-console.log(pathClient + 'src/index.tsx');
+
 module.exports = {
   devtool: 'inline-source-map',
   entry: {
@@ -47,10 +46,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(pathClient, 'public/index.html')
-    }),
-    // new CopyWebpackPlugin([{
-    //   from: './src/img',
-    //   to: ''
-    // }]), 
+    })
   ]
 }

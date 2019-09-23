@@ -4,3 +4,4 @@ yarn.lock
 .log
 *.orig
 package-lock.json
+.DS_Store

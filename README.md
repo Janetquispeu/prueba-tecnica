@@ -1,5 +1,5 @@
 # Prueba Técnica
-Puedes ver app en la siguiente dirección:
+Puedes ver la app en la siguiente dirección:
 https://app-firebase-3bc55.web.app/
 
 ## 1. Instalación

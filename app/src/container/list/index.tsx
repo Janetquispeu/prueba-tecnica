@@ -28,21 +28,21 @@ export class List extends React.Component<{},State> {
       <Section>
         <ContentTable>
           <TableHeader>
-            <Col style={{width: '20%'}}>Nº</Col>
-            <Col style={{width: '20%'}}>Nombre</Col>
-            <Col style={{width: '20%'}}>Apellidos</Col>
-            <Col style={{width: '20%'}}>Edad</Col>
-            <Col style={{width: '20%'}}>Fecha de Nacimiento</Col>
+            <Col>Nº</Col>
+            <Col>Nombre</Col>
+            <Col>Apellidos</Col>
+            <Col>Edad</Col>
+            <Col>Fecha de Nacimiento</Col>
           </TableHeader>
           {
             Object.keys(data).map((item, index) => {
               return(
                 <TableBody key={index}>
-                  <Col style={{width: '20%'}}>{index}</Col>
-                  <Col style={{width: '20%'}}>{data[item]['name']}</Col>
-                  <Col style={{width: '20%'}}>{data[item]['lastName']}</Col>
-                  <Col style={{width: '20%'}}>{data[item]['age']} </Col>
-                  <Col style={{width: '20%'}}>{data[item]['birthday']} </Col>
+                  <Col>{index}</Col>
+                  <Col>{data[item]['name']}</Col>
+                  <Col>{data[item]['lastName']}</Col>
+                  <Col>{data[item]['age']} </Col>
+                  <Col>{data[item]['birthday']} </Col>
                 </TableBody>
               )
             })

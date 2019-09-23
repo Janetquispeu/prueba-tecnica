@@ -30,6 +30,7 @@ export const TableBody = styled.div`
 
 export const Col = styled.div`
   padding: 10px;
+  width: '20%'
 `
 
 export const ButtonStyle = styled.a`
