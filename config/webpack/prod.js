@@ -1,9 +1,9 @@
 const path = require('path');
-const merge = require('webpack-merge');
 const common = require('./base.js');
 const outputPath = path.join(__dirname, '../../');
 console.log(outputPath +'dist/')
-module.exports = merge(common, {
+module.exports = {
+  ...common,
   mode: 'production',
   output: {
     path: path.join(outputPath, 'public/'),
@@ -16,4 +16,4 @@ module.exports = merge(common, {
       chunks: 'all',
     }
   }
-});
+};

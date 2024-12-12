@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pathClient = path.join(__dirname, '../../app/');
 
 module.exports = {
-  devtool: 'inline-source-map',
   entry: {
     'app': path.join(pathClient, 'src/index.tsx')
   },
@@ -27,20 +26,25 @@ module.exports = {
         ]
       },
       {
-        enforce: 'pre',
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
-      {
-        test: /\.tsx?$/,
+        test: /\.(tsx|ts$)/,
         exclude: /node_modules/,
         use: [
+          { loader: 'ts-loader' }
+        ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
           {
-            loader: 'awesome-typescript-loader'
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '../../app/src/assets/fonts/Roboto/',
+              esModule: false,
+            }
           }
         ]
-      }
+      }    
     ]
   },
   plugins: [

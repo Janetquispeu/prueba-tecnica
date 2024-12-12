@@ -9,10 +9,9 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "paths": {
-      "@app/*": [
-        "/*"
-      ]
+      "@app/*": ["src/*"]
     },
+    "outDir": "dist",
     "experimentalDecorators": true,
     "lib": [
       "dom",

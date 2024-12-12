@@ -28,7 +28,7 @@ export const validations = Yup.object().shape({
     .matches(new RegExp(REGEX_VALIDATION.number), ERROR_MESSAGES.common)
     .required(ERROR_MESSAGES.required)
     .test('age', 'Edad incorrecta', (value) => {
-      if(value === 0 || value >= 104) {
+      if(Number(value) === 0 || Number(value) >= 104) {
         return false
       }
       return true

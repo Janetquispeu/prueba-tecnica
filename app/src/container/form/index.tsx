@@ -6,14 +6,14 @@ import { Error } from '../../component/Error';
 import { FieldStyle, FormStyle, WrapperStyle, ButtonStyle } from './styled';
 import { formService} from '../../service';
 import { validations } from './validations';
-import { withRouter } from "react-router-dom";
 
 export const Form = ({...props}) => {
   return (
     <WrapperStyle>
       <Formik
         initialValues={
-          { name: '',
+          {
+            name: '',
             lastName: '',
             age: '', 
             birthday: ''
@@ -96,4 +96,4 @@ export const Form = ({...props}) => {
   );
 };
 
-export default withRouter(Form);
+export default Form;
